@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Pranav's Site</title>
+<style>
+  /* Reset and base styles */
+  html, body {
+    margin: 0; padding: 0; height: 100%;
+    background: white;
+    overflow: hidden;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+
+  #canvas {
+    display: block;
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 0;
+  }
+
+  .content {
+    position: relative;
+    z-index: 10;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #111;
+    font-size: 3rem;
+    user-select: none;
+  }
+</style>
+</head>
+<body>
+
+<canvas id="canvas"></canvas>
+<div class="content">
+  Pranav
+</div>
+
+<script>
+  const canvas = document.getElementById('canvas');
+  const ctx = canvas.getContext('2d');
+  let width, height;
+  let mouse = { x: 0, y: 0 };
+
+  function resize() {
+    width = window.innerWidth;
+    height = window.innerHeight;
+    canvas.width = width;
+    canvas.height = height;
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  window.addEventListener('mousemove', e => {
+    mouse.x = e.clientX;
+    mouse.y = e.clientY;
+  });
+
+  // Magnetic points scattered on screen
+  const points = [];
+  const POINT_COUNT = 50;
+
+  for(let i = 0; i < POINT_COUNT; i++) {
+    points.push({
+      x: Math.random() * width,
+      y: Math.random() * height,
+      vx: 0,
+      vy: 0,
+    });
+  }
+
+  function draw() {
+    ctx.clearRect(0, 0, width, height);
+    ctx.fillStyle = '#444';
+
+    points.forEach(p => {
+      // Vector from point to mouse
+      const dx = mouse.x - p.x;
+      const dy = mouse.y - p.y;
+      const distSq = dx*dx + dy*dy;
+      const dist = Math.sqrt(distSq);
+
+      // Magnetic effect: points attracted to cursor with some force
+      const force = Math.min(1000 / (distSq + 1000), 0.15);
+
+      // Update velocity (simple easing)
+      p.vx += force * dx;
+      p.vy += force * dy;
+
+      // Damping velocity to smooth motion
+      p.vx *= 0.85;
+      p.vy *= 0.85;
+
+      // Update position
+      p.x += p.vx;
+      p.y += p.vy;
+
+      // Draw circle
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, 4, 0, Math.PI * 2);
+      ctx.fill();
+    });
+
+    requestAnimationFrame(draw);
+  }
+
+  draw();
+</script>
+
+</body>
+</html>
