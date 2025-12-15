@@ -76,4 +76,118 @@
 <nav>
   <a href="#home">Home</a>
   <a href="#about">About</a>
-  <a href="#projects"
+  <a href="#projects">Projects</a>
+  <a href="#contact">Contact</a>
+</nav>
+
+<canvas id="bg"></canvas>
+
+<section id="home">
+  <h1>Pranav</h1>
+</section>
+
+<section id="about">
+  <div class="content">
+    <h2>About</h2>
+    <p>Math, CS, and building things that don’t feel dead.</p>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="content">
+    <h2>Projects</h2>
+    <p>Coming soon.</p>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="content">
+    <h2>Contact</h2>
+    <p>Email or links go here.</p>
+  </div>
+</section>
+
+<script>
+const canvas = document.getElementById("bg");
+const ctx = canvas.getContext("2d");
+
+let w, h, dpr;
+function resize() {
+  dpr = window.devicePixelRatio || 1;
+  w = window.innerWidth;
+  h = window.innerHeight;
+  canvas.width = w * dpr;
+  canvas.height = h * dpr;
+  canvas.style.width = w + "px";
+  canvas.style.height = h + "px";
+  ctx.setTransform(dpr,0,0,dpr,0,0);
+}
+window.addEventListener("resize", resize);
+resize();
+
+let mouse = { x: w/2, y: h/2 };
+window.addEventListener("mousemove", e => {
+  mouse.x = e.clientX;
+  mouse.y = e.clientY;
+});
+
+const particles = [];
+const COUNT = 120;
+
+for (let i = 0; i < COUNT; i++) {
+  particles.push({
+    x: Math.random() * w,
+    y: Math.random() * h,
+    vx: 0,
+    vy: 0
+  });
+}
+
+function flowAngle(x, y, t) {
+  return Math.sin(x * 0.002 + t) + Math.cos(y * 0.002 - t);
+}
+
+let time = 0;
+function animate() {
+  time += 0.003;
+  ctx.clearRect(0,0,w,h);
+
+  for (let p of particles) {
+    const angle = flowAngle(p.x, p.y, time);
+    const fx = Math.cos(angle);
+    const fy = Math.sin(angle);
+
+    const dx = p.x - mouse.x;
+    const dy = p.y - mouse.y;
+    const dist = Math.sqrt(dx*dx + dy*dy) || 1;
+
+    // cursor bends field, does NOT attract
+    const bend = Math.min(80 / dist, 2);
+    p.vx += fx - dx/dist * bend * 0.05;
+    p.vy += fy - dy/dist * bend * 0.05;
+
+    p.vx *= 0.96;
+    p.vy *= 0.96;
+
+    p.x += p.vx;
+    p.y += p.vy;
+
+    if (p.x < 0) p.x += w;
+    if (p.y < 0) p.y += h;
+    if (p.x > w) p.x -= w;
+    if (p.y > h) p.y -= h;
+
+    ctx.beginPath();
+    ctx.arc(p.x, p.y, 1.5, 0, Math.PI*2);
+    ctx.fillStyle = "rgba(60,80,255,0.6)";
+    ctx.fill();
+  }
+
+  requestAnimationFrame(animate);
+}
+
+animate();
+</script>
+
+</body>
+</html>
