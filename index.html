@@ -49,14 +49,6 @@
         backdrop-filter: blur(10px);
         border-bottom: 1px solid rgba(255, 255, 255, 0.05);
       }
-      @keyframes float {
-        0% { transform: translateY(0px); }
-        50% { transform: translateY(-10px); }
-        100% { transform: translateY(0px); }
-      }
-      .floating {
-        animation: float 6s ease-in-out infinite;
-      }
     </style>
     <script type="importmap">
     {
@@ -72,5 +64,7 @@
   </head>
   <body>
     <div id="root"></div>
+    <!-- This tag is essential for the logic to run -->
+    <script type="module" src="index.tsx"></script>
   </body>
 </html>

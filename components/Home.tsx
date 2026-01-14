@@ -46,7 +46,7 @@ const Home: React.FC = () => {
         </div>
 
         <div className="md:col-span-8 lg:col-span-7">
-          <h2 className="text-4xl font-bold mb-8 italic math-font">About</h2>
+          <h2 className="text-4xl font-bold mb-8 italic math-font text-white">About</h2>
           <div className="prose prose-invert max-w-none">
             <p className="text-gray-300 leading-relaxed text-lg font-light whitespace-pre-line">
               {PERSONAL_BIO}
