@@ -4,7 +4,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Pranav Challa | Mathematics & Computer Science</title>
+    <title>Pranav Challa | Portfolio</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -20,10 +20,6 @@
         color: #f8fafc;
         margin: 0;
         overflow-x: hidden;
-        background-image: 
-          linear-gradient(to right, rgba(255,255,255,0.02) 1px, transparent 1px),
-          linear-gradient(to bottom, rgba(255,255,255,0.02) 1px, transparent 1px);
-        background-size: 50px 50px;
       }
       .math-font { font-family: 'Crimson Pro', serif; font-style: italic; }
       .glass {
@@ -55,10 +51,6 @@
         text-transform: uppercase;
       }
     </style>
-    <!-- 
-      Strict importmap to prevent "Multiple versions of React" error.
-      All React components must point to the exact same version (19.0.0).
-    -->
     <script type="importmap">
 {
   "imports": {
@@ -68,14 +60,15 @@
     "react/jsx-runtime": "https://esm.sh/react@19.0.0/jsx-runtime",
     "react-router-dom": "https://esm.sh/react-router-dom@7.1.5?external=react,react-dom",
     "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
-    "react/": "https://esm.sh/react@^19.2.3/"
+    "react/": "https://esm.sh/react@^19.2.3/",
+    "vite": "https://esm.sh/vite@^7.3.1",
+    "@vitejs/plugin-react": "https://esm.sh/@vitejs/plugin-react@^5.1.2"
   }
 }
 </script>
   </head>
   <body>
     <div id="root"></div>
-    <!-- esm.sh/run is used to process TSX files directly in the browser -->
     <script type="module" src="https://esm.sh/run"></script>
     <script type="module" src="./index.tsx"></script>
   </body>

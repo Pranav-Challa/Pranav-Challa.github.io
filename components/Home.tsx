@@ -1,27 +1,12 @@
 
 import React from 'react';
-import { PERSONAL_BIO } from '../constants.tsx';
+import { PERSONAL_BIO } from '../constants';
 
 const Home: React.FC = () => {
   return (
-    <div className="pt-40 pb-20 max-w-5xl mx-auto px-6 space-y-40">
-      {/* Hero */}
-      <section className="min-h-[50vh] flex flex-col justify-center animate-in fade-in slide-in-from-bottom-12 duration-1000">
-        <div className="space-y-10">
-          
-          <h1 className="text-7xl md:text-9xl font-bold tracking-tight leading-[0.9]">
-            Logic <span className="math-font italic text-gray-500">&</span><br />
-            <span className="gradient-text">Computation.</span>
-          </h1>
-          
-          <p className="text-gray-400 text-xl md:text-2xl max-w-2xl font-light leading-relaxed">
-            Exploring the intersection of abstract theory and practical systems.
-          </p>
-        </div>
-      </section>
-
-      {/* About (Integrated) */}
-      <section className="grid md:grid-cols-12 gap-16 animate-in fade-in duration-1000 delay-500">
+    <div className="pt-60 pb-20 max-w-5xl mx-auto px-6">
+      {/* Narrative Section - Now the primary entrance of the page */}
+      <section className="grid md:grid-cols-12 gap-16 animate-in fade-in slide-in-from-bottom-8 duration-1000">
         <div className="md:col-span-4">
           <div className="aspect-[4/5] rounded-2xl glass overflow-hidden relative group">
             <div className="absolute inset-0 bg-gradient-to-tr from-blue-500/10 to-transparent" />
