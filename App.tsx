@@ -1,10 +1,10 @@
 
 import React from 'react';
 import { HashRouter as Router, Routes, Route } from 'react-router-dom';
-import Navigation from './components/Navigation';
-import Home from './components/Home';
-import Projects from './components/Projects';
-import Contact from './components/Contact';
+import Navigation from './components/Navigation.tsx';
+import Home from './components/Home.tsx';
+import Projects from './components/Projects.tsx';
+import Contact from './components/Contact.tsx';
 
 const App: React.FC = () => {
   return (

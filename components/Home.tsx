@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { PERSONAL_BIO } from '../constants';
+import { PERSONAL_BIO } from '../constants.tsx';
 
 const Home: React.FC = () => {
   return (
@@ -33,7 +33,7 @@ const Home: React.FC = () => {
         </div>
       </section>
 
-      {/* About Section (Integrated) */}
+      {/* About Section */}
       <section className="grid md:grid-cols-12 gap-16 items-start animate-in fade-in duration-1000 delay-300">
         <div className="md:col-span-4 lg:col-span-5">
           <div className="aspect-[3/4] rounded-3xl overflow-hidden glass border-white/10 relative shadow-2xl">
